@@ -115,9 +115,34 @@
       '<div class="step"><div class="dot">🚚</div>Shipped<br>(conceptually)</div>' +
       '<div class="step"><div class="dot">🏠</div>Delivered<br>(never)</div>' +
       '</div>' +
-      '<p class="eta">Arriving <strong>' + deliveryLine() + '</strong> by 10 PM to Gate 42A, Terminal 2</p>' +
+      '<p class="eta">Arriving <strong>' + deliveryLine() + '</strong> by 10 PM to ' + deliveryAddr + '</p>' +
       '<p class="fineprint">A confirmation email has been sent to absolutely no one.</p>' +
       '<button class="btn-buy" style="margin-top:18px" onclick="location.hash=\'#/\'">Keep shopping</button></div>';
+  }
+
+  // Delivery address: reverse-geocode the visitor's browser location when granted,
+  // else fall back to a random-ish Mumbai landmark.
+  var deliveryAddr = 'One World Centre, Prabhadevi, Mumbai';
+
+  function setDeliverTo(a) {
+    deliveryAddr = a;
+    var el = document.getElementById('deliver-to');
+    if (el) el.textContent = a;
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      var lat = pos.coords.latitude, lon = pos.coords.longitude;
+      fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat + '&lon=' + lon)
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.display_name) {
+            var parts = d.display_name.split(',').slice(0, 3).join(',');
+            setDeliverTo(parts);
+          }
+        })
+        .catch(function () { /* keep the fallback */ });
+    }, function () { /* denied - keep the fallback */ }, { timeout: 8000, maximumAge: 600000 });
   }
 
   function route() {
