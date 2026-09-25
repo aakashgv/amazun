@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>amazun - the everything store</title>
+<meta name="description" content="Everything you don't need, at prices you'll love.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📦</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#/">
+    <span class="brand-name">amazun</span>
+    <svg class="smile" viewBox="0 0 60 18" aria-hidden="true"><path d="M2 4 C 18 16, 42 16, 56 5" fill="none" stroke="#febd69" stroke-width="3" stroke-linecap="round"/><path d="M50 2 L 57 4 L 54 11" fill="none" stroke="#febd69" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <div class="search">
+    <input id="search" type="text" placeholder="Search amazun for things you don't need" autocomplete="off">
+  </div>
+  <a class="cart-link" href="#/cart">
+    <span class="cart-count" id="cart-count">0</span>
+    <span class="cart-icon">🛒</span>
+    <span class="cart-word">Cart</span>
+  </a>
+</header>
+
+<div class="subbar">
+  <span>Deliver to <strong>Gate 42A, Terminal 2, Mumbai</strong></span>
+  <span class="primo">primo: free delivery on everything, forever*</span>
+</div>
+
+<main id="app"></main>
+
+<footer class="foot">
+  <p>amazun - the everything store (not the other one)</p>
+  <p class="tiny">*nothing ever ships. the cart was the destination.</p>
+</footer>
+
+<script src="products.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
